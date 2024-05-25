@@ -1,0 +1,26 @@
+.contenedor-galeria{
+    display: grid;
+    grid-template-columns: 20% 30% 30% 20%;
+    grid-template-rows: 400px;
+    background-color:burlywood;
+}
+
+.box-galeria{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1px;
+}
+
+.box-galeria img{
+    width: 100%;
+    height: 100%;
+    gap: 2px;
+    transition: all 800ms;
+    mask-image: linear-gradient(black 88%, transparent);
+}
+
+.box-galeria img:hover{
+    transform: scale(1.04);
+}

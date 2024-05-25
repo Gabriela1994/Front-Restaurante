@@ -1,23 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import './Componentes/body.css';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+
+//---------------------PAGES
+import Home from './Paginas/Home.js'
+import Contacto from './Paginas/Contacto.js'
+import Administracion from './Paginas/Administracion.js'
+import PaginaAdmiIngredientes from './Paginas/admi.ingredientes.js'
+import PaginaAdmiProductos from './Paginas/admi.productos.js'
+import PaginaAdmiPedidos from './Paginas/admi.pedidos.js'
+//---------------------
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <BrowserRouter>
+        <Routes>
+          
+          <Route index element = {<Home />} />
+          <Route path = "/home" element = {<Home />} />
+          <Route path = "/contacto" element = {<Contacto />} />
+          <Route path = "/administracion" element = {<Administracion />} />
+          <Route path = "/admi-ingredientes" element = {<PaginaAdmiIngredientes />} />
+          <Route path = "/admi-productos" element = {<PaginaAdmiProductos />} />
+          <Route path = "/admi-pedidos" element = {<PaginaAdmiPedidos />} />
+
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

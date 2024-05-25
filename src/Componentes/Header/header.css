@@ -1,0 +1,58 @@
+.container {
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 15px;
+}
+
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    background-color: black;
+    padding: 15px;
+    box-shadow: 0 0 10px black;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.logo {
+    margin-right: 40%;
+}
+
+.logo h1 {
+    font-size: 30px;
+    color: orangered;
+    margin-bottom: 0;
+}
+
+.logo h3 {
+    font-size: 15px;
+    margin-top: 0;
+}
+
+.lista {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.lista a {
+    font-size: 18px;
+}
+
+.lista * {
+    transition: .3s;
+}
+
+.lista:hover>* {
+    opacity: 0.3;
+}
+
+.lista:hover>*:hover {
+    opacity: 1;
+}

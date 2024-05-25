@@ -1,0 +1,28 @@
+.contenedor-footer{
+    display: grid;
+    grid-template-columns: repeat(3, 33.3%);
+    grid-template-rows: 400px;
+    background-color:rgb(222, 135, 200);
+}
+
+.box-footer{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    background-color: black;
+}
+
+.box-footer p{
+    margin-bottom: 0;
+    color:white;
+}
+.box-footer h3{
+    margin-bottom: 20px;
+    color: orangered;
+    font-size: 20px;
+}
+.box-footer h4{
+    margin-bottom: 0;
+    color:orangered;
+}

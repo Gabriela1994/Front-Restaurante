@@ -1,0 +1,9 @@
+function ObtenerData() {
+
+    fetch("http://localhost:50428/api/Producto", {method: "POST"}) //asi le digo al fetch que se comporte como un post. sirve para put etc.
+        .then((response) => response.json())
+        .then((data => {
+            dataTodosProductos = data;
+        }))
+}
+
