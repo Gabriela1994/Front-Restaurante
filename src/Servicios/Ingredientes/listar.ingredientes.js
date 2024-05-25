@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import * as React from 'react';
-import EditNoteIcon from '@mui/icons-material/EditNote';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import LateralEditar from '../../Componentes/Laterales/lateral-edit.js'
-import ObtenerProductoPorId from '../../Servicios/Ingredientes/editar.ingrediente.js'
-import $, { isEmptyObject } from 'jquery';
-
+import {BorrarIngrediente} from '../../Servicios/Ingredientes/editar.ingrediente.js'
 
 var dataTodosIngredientes = [];
 
@@ -52,7 +49,7 @@ export const ListarIngredientes = () => {
 
                             <td className="td-acciones">
                                 <LateralEditar ingrediente={ingrediente} />
-                                <IconButton color="inherit">
+                                <IconButton onClick={() => BorrarIngrediente(ingrediente)} color="inherit">
                                     <DeleteIcon fontSize="inherit" />
                                 </IconButton>
                             </td>

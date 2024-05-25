@@ -3,11 +3,10 @@ import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import BotonEditar from '../Botones/Boton-editar.js'
-import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
 import EditNoteIcon from '@mui/icons-material/EditNote';
-import LlenarLosDatosDelObjeto from '../../Servicios/Ingredientes/editar.ingrediente.js'
+import Stack from '@mui/material/Stack';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import LlenarObjetoParaModificar from '../../Servicios/Ingredientes/editar.ingrediente.js'
 
 
 export default function LateralEditar(props) {
@@ -57,14 +56,22 @@ export default function LateralEditar(props) {
                     label="Precio"
                     color="secondary"
                     focused
+                    value={ingrediente.precio}
+                    onChange={(e) => handleInput(e, "precio")}
                 />
                 <TextField
                     id="txtStock"
                     label="Stock"
                     color="secondary"
                     focused
+                    value={ingrediente.stock}
+                    onChange={(e) => handleInput(e, "stock")}
                 />
-                <BotonEditar />
+                <Stack direction="row" spacing={2}>
+                    <Button onClick={() => LlenarObjetoParaModificar(ingrediente)} variant="outlined" startIcon={<AddCircleOutlineIcon />}>
+                        Editar
+                    </Button>
+                </Stack>
             </Box>
         </Box>
     );
@@ -76,7 +83,7 @@ export default function LateralEditar(props) {
                     <Button className='button-adm' onClick={toggleDrawer(anchor, true)}>
                         <EditNoteIcon fontSize="inherit" />
                     </Button>
-                    
+
                     <Drawer
                         anchor={anchor}
                         open={state[anchor]}

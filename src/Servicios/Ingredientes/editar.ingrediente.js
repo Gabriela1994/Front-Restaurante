@@ -1,10 +1,6 @@
 import $, { isEmptyObject } from 'jquery';
 import { ObtenerIngredientes } from '../../Servicios/Ingredientes/listar.ingredientes'
 
-let id = document.getElementById("thid")
-let nombre = document.getElementById("txtNombre");
-let precio = document.getElementById("txtPrecio");
-let stock = document.getElementById("txtStock");
 let obj = {};
 
 var dataTodosIngredientes = [];
@@ -21,34 +17,52 @@ function ObtenerProductoPorId(id) {
 
 function ModificarIngrediente(id, obj) {
     $.ajax({
-        type: "PUT",
+        type: "POST",
         dataType: "json",
         data: obj,
-        url: "http://localhost:10404/api/ingredientes/editar" + id,
+        url: "http://localhost:10404/api/ingredientes/editar/" + id,
+        success: function (data) {
+        }
+    })
+}
+function EliminarIngrediente(id) {
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: "http://localhost:10404/api/ingredientes/eliminar/" + id,
         success: function (data) {
         }
     })
 }
 
-export default function LlenarLosDatosDelObjeto(ingrediente) {
+export default function LlenarObjetoParaModificar(ingrediente) {
+    
     const datos = ObtenerIngredientes();
-
-    let objEncontrado = datos.find(p => p.id === parseInt(ingrediente.id))  
+    
+    obj = {
+        nombre: ingrediente.nombre,
+        precio: parseInt(ingrediente.precio),
+        stock: parseInt(ingrediente.stock),
+    }
+    
+    let objEncontrado = datos.find( o => o.id === parseInt(ingrediente.id))
+    
+    if (objEncontrado){
+        ModificarIngrediente(ingrediente.id, obj)
+        alert("Producto modificado satisfactoriamente")
+    } else{
+        alert("Este registro no existe")
+    }
 }
 
-function LlenarObjetoParaModificar() {
-
-    obj = {
-        nombre: nombre.value,
-        precio: parseInt(precio.value),
-        stock: parseInt(stock.value),
-    }
-
-    let objEncontrado = dataTodosIngredientes.some( o => o.id === parseInt(id.value))
-
+export function BorrarIngrediente(ingrediente){
+    
+    const datos = ObtenerIngredientes();
+    let objEncontrado = datos.find( o => o.id === parseInt(ingrediente.id))
+    
     if (objEncontrado){
-        ModificarIngrediente(id.value, obj)
-        alert("Producto modificado satisfactoriamente")
+        EliminarIngrediente(objEncontrado.id)
+        alert("Producto eliminado satisfactoriamente")
     } else{
         alert("Este registro no existe")
     }
