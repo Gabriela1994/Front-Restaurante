@@ -84,7 +84,7 @@ function AgregarIngrediente(ingrediente) {
                     focused
                     />
                 <Stack direction="row" spacing={2}>
-                    <Button onClick={() => MethodPostIngrediente(formValues)} variant="outlined" startIcon={<AddCircleOutlineIcon />}>
+                    <Button onClick={() => AgregarIngrediente(formValues)} variant="outlined" startIcon={<AddCircleOutlineIcon />}>
                         Crear
                     </Button>
                 </Stack>

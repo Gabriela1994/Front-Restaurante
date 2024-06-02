@@ -1,40 +1,36 @@
 import $, { isEmptyObject } from 'jquery';
 import { ObtenerIngredientes } from '../../Servicios/Ingredientes/listar.ingredientes'
 
-let obj = {};
-
-function EditarIngrediente(ingrediente) {
-
-    let baseURL = 'http://localhost:10404/api/ingredientes/crear';
-
-    let objIngrediente = {
-        nombre: ingrediente.nombre,
-        precio: parseFloat(ingrediente.precio),
-        stock: parseInt(ingrediente.stock)
-    }
-
-    axios
-        .post(baseURL, objIngrediente)
-        .then(response => {
-            console.log("suceess")
-            console.log(response)
-        })
-        .catch(error => {
-            console.log("ocurrió un error")
-            console.log(error)
-        })
-    }
-
-function ModificarIngrediente(id, obj) {
-    $.ajax({
-        type: "POST",
-        dataType: "json",
-        data: obj,
-        url: "http://localhost:10404/api/ingredientes/editar/" + id,
-        success: function (data) {
+    export const EditarIngrediente = async (objIngrediente) => {
+    try {
+        let id = objIngrediente.id;
+        
+        let objParseado = {
+            id: objIngrediente.id,
+            nombre: objIngrediente.nombre,
+            precio: parseFloat(objIngrediente.precio),
+            stock: parseInt(objIngrediente.stock)
         }
-    })
+
+        const datos = ObtenerIngredientes();
+        let objEncontrado = datos.find(o => o.id === parseInt(id))
+        if (objEncontrado) {
+            const response = await fetch("http://localhost:10404/api/ingredientes/editar/", {
+
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(objParseado),
+            });
+                const data = await response.json();
+                return data;
+        }
+    } catch (error) {
+        console.error("Error fetching data:", error);
+    }
 }
+
 function EliminarIngrediente(id) {
     $.ajax({
         type: "GET",
@@ -45,37 +41,16 @@ function EliminarIngrediente(id) {
     })
 }
 
-export default function LlenarObjetoParaModificar(ingrediente) {
-    
-    const datos = ObtenerIngredientes();
-    
-    obj = {
-        nombre: ingrediente.nombre,
-        precio: parseInt(ingrediente.precio),
-        stock: parseInt(ingrediente.stock),
-    }
-    
-    let objEncontrado = datos.find( o => o.id === parseInt(ingrediente.id))
-    
-    if (objEncontrado){
-        ModificarIngrediente(ingrediente.id, obj)
-        alert("Ingrediente modificado exitosamente")
-        window.location.reload();
-    } else{
-        alert("Este registro no existe")
-    }
-}
+export function BorrarIngrediente(ingrediente) {
 
-export function BorrarIngrediente(ingrediente){
-    
     const datos = ObtenerIngredientes();
-    let objEncontrado = datos.find( o => o.id === parseInt(ingrediente.id))
-    
-    if (objEncontrado){
+    let objEncontrado = datos.find(o => o.id === parseInt(ingrediente.id))
+
+    if (objEncontrado) {
         EliminarIngrediente(objEncontrado.id)
         alert("Producto eliminado satisfactoriamente")
         window.location.reload();
-    } else{
+    } else {
         alert("Este registro no existe")
     }
 }

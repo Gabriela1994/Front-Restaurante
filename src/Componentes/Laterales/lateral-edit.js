@@ -6,7 +6,7 @@ import EditNoteIcon from '@mui/icons-material/EditNote';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import LlenarObjetoParaModificar from '../../Servicios/Ingredientes/editar.ingrediente.js'
+import {EditarIngrediente} from '../../Servicios/Ingredientes/editar.ingrediente.js'
 
 
 export default function LateralEditar(props) {
@@ -68,7 +68,7 @@ export default function LateralEditar(props) {
                     onChange={(e) => handleInput(e, "stock")}
                 />
                 <Stack direction="row" spacing={2}>
-                    <Button onClick={() => LlenarObjetoParaModificar(ingrediente)} variant="outlined" startIcon={<AddCircleOutlineIcon />}>
+                    <Button onClick={async () => EditarIngrediente(ingrediente)} variant="outlined" startIcon={<AddCircleOutlineIcon />}>
                         Editar
                     </Button>
                 </Stack>
