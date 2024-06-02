@@ -3,8 +3,6 @@ import { ObtenerIngredientes } from '../../Servicios/Ingredientes/listar.ingredi
 
 let obj = {};
 
-var dataTodosIngredientes = [];
-
 function ObtenerProductoPorId(id) {
     $.ajax({
         type: "GET",
@@ -49,7 +47,8 @@ export default function LlenarObjetoParaModificar(ingrediente) {
     
     if (objEncontrado){
         ModificarIngrediente(ingrediente.id, obj)
-        alert("Producto modificado satisfactoriamente")
+        alert("Ingrediente modificado exitosamente")
+        window.location.reload();
     } else{
         alert("Este registro no existe")
     }
@@ -63,6 +62,7 @@ export function BorrarIngrediente(ingrediente){
     if (objEncontrado){
         EliminarIngrediente(objEncontrado.id)
         alert("Producto eliminado satisfactoriamente")
+        window.location.reload();
     } else{
         alert("Este registro no existe")
     }

@@ -1,36 +1,95 @@
-import $, { isEmptyObject } from 'jquery';
-import AlertaSuccess from '../../Componentes/Alertas/snackBarSuccess';
+import axios from "axios";
+import React from "react";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import '../../Componentes/administracion.css'
+import Stack from '@mui/material/Stack';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import AlertSuccess from '../../Componentes/Alertas/alert.success'
 
-function CrearIngrediente(obj) {
-    $.ajax({
-        type: "POST",
-        dataType: "json",
-        data: obj,
-        url: "http://localhost:10404/api/ingredientes/crear",
-        success: function (data) {
-            alert("Ingrediente agregado correctamente"); //deberia ir un mensajito lindo con material ui, crear este componente
-            window.location.reload();
-        }
-    })
-}
+function MethodPostIngrediente(ingrediente) {
 
-export default function ObtenerData() {
+    let baseURL = 'http://localhost:10404/api/ingredientes/crear';
 
-    let nombre = document.getElementById("txtNombre");
-    let precio = document.getElementById("txtPrecio");
-    let stock = document.getElementById("txtStock");
-    let obj = {};
-
-    if (nombre && precio && stock != null) {
-        obj = {
-            nombre: nombre.value,
-            precio: parseInt(precio.value),
-            stock: parseInt(stock.value)
-        }
-        CrearIngrediente(obj);
-        <AlertaSuccess />
-    } else {
-        alert("Debes ingresar todos los datos")
-        return null;
+    let objIngrediente = {
+        nombre: ingrediente.nombre,
+        precio: parseFloat(ingrediente.precio),
+        stock: parseInt(ingrediente.stock)
     }
+
+    axios
+        .post(baseURL, objIngrediente)
+        .then(response => {
+            console.log("suceess")
+            console.log(response)
+        })
+        .catch(error => {
+            console.log("ocurrió un error")
+            console.log(error)
+        })
+    }
+    export default function CrearIngrediente() {
+        
+        const [formValues, setFormValues] = React.useState({
+            nombre: '',
+            precio: '',
+            stock: ''
+        });
+        
+        const handleChange = (event) => {
+            const { id, value } = event.target;
+            setFormValues({ ...formValues, [id]: value })
+        }
+        
+        return (
+
+        <Box
+            sx={{ width: 200 || 300 }}
+            role="presentation"
+            >
+            <Box
+                component="form"
+                sx={{
+                    '& > :not(style)': { m: 1, width: '30ch' },
+                }}
+                >
+                <br></br>
+
+                <TextField
+                    helperText="Ingresa el nombre del ingrediente"
+                    id="nombre"
+                    label="Nombre"
+                    color="secondary"
+                    value={formValues.nombre}
+                    onChange={handleChange}
+                    focused
+                    />
+                <TextField
+                    helperText="Ingresa el precio del ingrediente"
+                    id="precio"
+                    label="Precio"
+                    color="secondary"
+                    value={formValues.precio}
+                    onChange={handleChange}
+                    focused
+                    />
+                <TextField
+                    helperText="Ingresa el stock disponible"
+                    id="stock"
+                    label="Stock"
+                    color="secondary"
+                    value={formValues.stock}
+                    onChange={handleChange}
+                    focused
+                    />
+                <Stack direction="row" spacing={2}>
+                    <Button onClick={() => MethodPostIngrediente(formValues)} variant="outlined" startIcon={<AddCircleOutlineIcon />}>
+                        Crear
+                    </Button>
+                </Stack>
+
+            </Box>
+        </Box>
+    )
 }

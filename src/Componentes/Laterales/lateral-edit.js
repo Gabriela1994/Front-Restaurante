@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import EditNoteIcon from '@mui/icons-material/EditNote';
+import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import LlenarObjetoParaModificar from '../../Servicios/Ingredientes/editar.ingrediente.js'
@@ -30,14 +30,14 @@ export default function LateralEditar(props) {
 
     const list = (anchor) => (
         <Box
-            sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+            sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 300 }}
             role="presentation"
         >
 
             <Box
                 component="form"
                 sx={{
-                    '& > :not(style)': { m: 1, width: '25ch' },
+                    '& > :not(style)': { m: 1, width: '30ch' },
                 }}
                 noValidate
                 autoComplete="off"

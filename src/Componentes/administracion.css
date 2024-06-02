@@ -5,17 +5,24 @@
 
 .contenedor-administracion {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: baseline;
     justify-content: flex-start;
 }
 
 .contenedor-administracion h2 {
     font-size: 25px;
-    display: inline-block;
     animation: bounce;
     color:#4b1c71;
     animation-duration: 2s;
+    margin-bottom: 0;
+}
+.contenedor-administracion p {
+    font-size: 17px;
+    animation: bounce;
+    color:#4b1c71;
+    animation-duration: 2s;
+    margin-top: 0;
 }
 
 .contenedor-grid-principal {

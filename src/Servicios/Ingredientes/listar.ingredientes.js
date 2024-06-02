@@ -3,12 +3,16 @@ import * as React from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import LateralEditar from '../../Componentes/Laterales/lateral-edit.js'
-import {BorrarIngrediente} from '../../Servicios/Ingredientes/editar.ingrediente.js'
+import { BorrarIngrediente } from '../../Servicios/Ingredientes/editar.ingrediente.js'
+import { IngredientesFaltantes } from '../Ingredientes/faltantes.ingredientes.js'
+import { IngredientesConPocoStock } from '../Ingredientes/ingredientes.pocoStock.js'
+import '../Ingredientes/servi.ingredientes.css';
+
 
 var dataTodosIngredientes = [];
 
 export function ObtenerIngredientes() {
-    
+
     return dataTodosIngredientes;
 }
 
@@ -26,10 +30,10 @@ export const ListarIngredientes = () => {
         };
         fetchData();
     }, []);
-    
+
     return (
         <div>
-            <table className = "table-admin"border="1">
+            <table className="table-admin" border="1">
                 <thead className="thead-admin">
                     <tr>
                         <th>Nombre</th>
