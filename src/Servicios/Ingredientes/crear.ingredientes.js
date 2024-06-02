@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import AlertSuccess from '../../Componentes/Alertas/alert.success'
 
-function MethodPostIngrediente(ingrediente) {
+function AgregarIngrediente(ingrediente) {
 
     let baseURL = 'http://localhost:10404/api/ingredientes/crear';
 

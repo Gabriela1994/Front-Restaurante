@@ -3,15 +3,27 @@ import { ObtenerIngredientes } from '../../Servicios/Ingredientes/listar.ingredi
 
 let obj = {};
 
-function ObtenerProductoPorId(id) {
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: "http://localhost:50428/api/ingredientes/" + id,
-        success: function (data) {
-        }
-    })
-}
+function EditarIngrediente(ingrediente) {
+
+    let baseURL = 'http://localhost:10404/api/ingredientes/crear';
+
+    let objIngrediente = {
+        nombre: ingrediente.nombre,
+        precio: parseFloat(ingrediente.precio),
+        stock: parseInt(ingrediente.stock)
+    }
+
+    axios
+        .post(baseURL, objIngrediente)
+        .then(response => {
+            console.log("suceess")
+            console.log(response)
+        })
+        .catch(error => {
+            console.log("ocurrió un error")
+            console.log(error)
+        })
+    }
 
 function ModificarIngrediente(id, obj) {
     $.ajax({
