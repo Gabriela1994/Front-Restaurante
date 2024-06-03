@@ -3,9 +3,7 @@ import * as React from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import LateralEditar from '../../Componentes/Laterales/lateral-edit.js'
-import { BorrarIngrediente } from '../../Servicios/Ingredientes/editar.ingrediente.js'
-import { IngredientesFaltantes } from '../Ingredientes/faltantes.ingredientes.js'
-import { IngredientesConPocoStock } from '../Ingredientes/ingredientes.pocoStock.js'
+import { EliminarIngrediente } from '../../Servicios/Ingredientes/eliminar.ingrediente.js'
 import '../Ingredientes/servi.ingredientes.css';
 
 
@@ -53,7 +51,7 @@ export const ListarIngredientes = () => {
 
                             <td className="td-acciones">
                                 <LateralEditar ingrediente={ingrediente} />
-                                <IconButton onClick={() => BorrarIngrediente(ingrediente)} color="inherit">
+                                <IconButton onClick={async () => EliminarIngrediente(ingrediente)} color="inherit">
                                     <DeleteIcon fontSize="inherit" />
                                 </IconButton>
                             </td>

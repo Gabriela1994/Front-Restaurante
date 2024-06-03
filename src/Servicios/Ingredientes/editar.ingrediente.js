@@ -1,4 +1,3 @@
-import $, { isEmptyObject } from 'jquery';
 import { ObtenerIngredientes } from '../../Servicios/Ingredientes/listar.ingredientes'
 
     export const EditarIngrediente = async (objIngrediente) => {
@@ -28,29 +27,5 @@ import { ObtenerIngredientes } from '../../Servicios/Ingredientes/listar.ingredi
         }
     } catch (error) {
         console.error("Error fetching data:", error);
-    }
-}
-
-function EliminarIngrediente(id) {
-    $.ajax({
-        type: "GET",
-        dataType: "json",
-        url: "http://localhost:10404/api/ingredientes/eliminar/" + id,
-        success: function (data) {
-        }
-    })
-}
-
-export function BorrarIngrediente(ingrediente) {
-
-    const datos = ObtenerIngredientes();
-    let objEncontrado = datos.find(o => o.id === parseInt(ingrediente.id))
-
-    if (objEncontrado) {
-        EliminarIngrediente(objEncontrado.id)
-        alert("Producto eliminado satisfactoriamente")
-        window.location.reload();
-    } else {
-        alert("Este registro no existe")
     }
 }
