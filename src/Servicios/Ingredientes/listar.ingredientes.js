@@ -7,13 +7,26 @@ import { EliminarIngrediente } from '../../Servicios/Ingredientes/eliminar.ingre
 import '../Ingredientes/servi.ingredientes.css';
 
 
-var dataTodosIngredientes = [];
+let dataTodosIngredientes = [];
 
 export function ObtenerIngredientes() {
 
     return dataTodosIngredientes;
 }
 
+export function ListarIngredientes2() {
+        const fetchData = async () => {
+            try {
+                const response = await fetch("http://localhost:10404/api/ingredientes/lista");
+                const data = await response.json();
+                 dataTodosIngredientes = data;
+                 console.log(dataTodosIngredientes)
+            } catch (error) {
+                console.error("Error fetching ingredientes:", error);
+            }
+        };
+        fetchData();
+    };
 export const ListarIngredientes = () => {
     const [data, setData] = useState([]);
     useEffect(() => {

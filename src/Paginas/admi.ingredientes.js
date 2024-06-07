@@ -1,7 +1,6 @@
 import Menu_Lateral from '../Componentes/Menu_Lateral/menu.lateral.js'
 import Box from "@mui/material/Box";
 import funci, { ListarIngredientes } from '../Servicios/Ingredientes/listar.ingredientes.js'
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import '../Paginas/paginas.css'
 import AnchorTemporaryDrawer from '../Componentes/Laterales/lateral-create.js'
 import { IngredientesFaltantes } from '../Servicios/Ingredientes/faltantes.ingredientes.js'

@@ -1,39 +1,32 @@
 import * as React from 'react';
+import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Alert from '@mui/material/Alert';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import Collapse from '@mui/material/Collapse';
-import { Snackbar } from '@mui/material';
+import Button from '@mui/material/Button';
+import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
 
-export default function AlertSuccess() {
-  const [open, setOpen] = React.useState(true);
-  
-  
+
+export default function PositionedSnackbar() {
+  const [state, setState] = React.useState({
+    open: true,
+    vertical: 'top',
+    horizontal: 'center',
+  });
+  const { vertical, horizontal, open } = state;
+
+
+  const handleClose = () => {
+    setState({ ...state, open: false });
+  };
+
   return (
-    <Box sx={{ width: '100%' }}>
-      <Collapse in={open}>
-
-        <Snackbar open={open} autoHideDuration={1000}>
-        <Alert
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }
-          sx={{ mb: 2 }}
-        >
-          El ingrediente se creó correctamente.
-        </Alert>
-        </Snackbar>
-      </Collapse>
+    <Box sx={{ width: 500 }}>
+      <Snackbar
+        anchorOrigin={{ vertical, horizontal }}
+        open={open}
+        onClose={handleClose}
+        message="I love snacks"
+        key={vertical + horizontal}
+      />
     </Box>
   );
 }

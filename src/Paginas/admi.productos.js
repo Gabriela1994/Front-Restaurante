@@ -1,5 +1,8 @@
 import Menu_Lateral from '../Componentes/Menu_Lateral/menu.lateral.js'
 import Box from "@mui/material/Box";
+import {ListarProductos} from '../Servicios/Productos/listar.productos.js'
+import LateralCrearProducto from '../Componentes/Laterales/lateral-create-producto.js'
+import { ListaDeCategorias } from '../Servicios/Categorias/listar.categorias.js';
 
 
 export default function PaginaAdmiProductos() {
@@ -8,7 +11,16 @@ export default function PaginaAdmiProductos() {
             <Box sx={{ display: "flex" }}>
                 <Menu_Lateral />
                 <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                    <h2>Página de admi productos</h2>
+                    <div className='contenedor-administracion'>
+                        <h2>Gestión de productos</h2>
+                        <p>Acá puedes configurar todos tus productos.</p>
+                    </div>
+
+                        <div className='icon-crear'>
+                            <LateralCrearProducto />
+                        </div>
+                    <ListarProductos />
+                    <ListaDeCategorias />
                 </Box>
             </Box>
         </>
