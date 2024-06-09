@@ -17,7 +17,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { ObtenerIngredientes } from '../Ingredientes/listar.ingredientes'
-import {ObtenerCategorias} from '../Categorias/listar.categorias.js'
+import { ObtenerCategorias } from '../Categorias/listar.categorias.js'
 
 import PositionedSnackbar from '../../Componentes/Alertas/alert.success'
 
@@ -69,11 +69,11 @@ export default function LlenarArrayDeIngredientes() {
     let listaCategorias = ObtenerCategorias();
 
     const [categoria, setCategoria] = React.useState();
-    
+
     const CambiarCategoria = (event) => {
-        const {value} = event.target
+        const { value } = event.target
         setCategoria(value)
-}
+    }
     const [formValues, setFormValues] = React.useState({
         nombre: '',
         precio: '',
@@ -82,12 +82,12 @@ export default function LlenarArrayDeIngredientes() {
     const handleChange = (event) => {
         const { id, value } = event.target
         setFormValues({ ...formValues, [id]: value })
-        }
+    }
 
     return (
         <Box
-        sx={{ width: 200 || 300 }}
-        role="presentation"
+            sx={{ width: 200 || 300 }}
+            role="presentation"
         >
             <Box
                 component="form"
@@ -104,24 +104,30 @@ export default function LlenarArrayDeIngredientes() {
                     value={formValues.nombre}
                     onChange={handleChange}
                     focused
-                    required = {true}
+                    required={true}
                 />
-                    <InputLabel color="secondary">Categoría</InputLabel>
+
+                <FormControl sx={{ m: 1, minWidth: 120 }}>
+                    <InputLabel id="categoria" color="secondary">Categoría</InputLabel>
                     <Select
-                        id="categoria"
+                        labelId='categoria'
+                        id="" categoria
                         label="Categoria"
                         onChange={CambiarCategoria}
                         color="secondary"
-                        required = {true}
-                        >
+                        required={true}
+                    >
                         <MenuItem value={0}>
                             <em>None</em>
                         </MenuItem>
                         {listaCategorias.map((cat) =>
-                        <MenuItem value={cat.id}>{cat.nombre}</MenuItem>
+                            <MenuItem value={cat.id}>{cat.nombre}</MenuItem>
                         )}
                     </Select>
                     <FormHelperText>Ingrese la categoria del producto</FormHelperText>
+                </FormControl>
+
+
                 <TextField
                     helperText="Ingresa el precio"
                     id="precio"
@@ -130,7 +136,7 @@ export default function LlenarArrayDeIngredientes() {
                     value={formValues.precio}
                     onChange={handleChange}
                     focused
-                    required = {true}
+                    required={true}
                 />
                 <TextField
                     helperText="Ingresa una descripcion para el producto"
@@ -140,7 +146,7 @@ export default function LlenarArrayDeIngredientes() {
                     value={formValues.descripcion}
                     onChange={handleChange}
                     focused
-                    required = {true}
+                    required={true}
                 />
                 <FormControl component="fieldset">
                     <FormLabel component="legend">Elige los ingredientes</FormLabel>
