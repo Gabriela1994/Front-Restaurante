@@ -2,7 +2,6 @@ import Menu_Lateral from '../Componentes/Menu_Lateral/menu.lateral.js'
 import Box from "@mui/material/Box";
 import {ListarProductos} from '../Servicios/Productos/listar.productos.js'
 import LateralCrearProducto from '../Componentes/Laterales/lateral-create-producto.js'
-import { ListaDeCategorias } from '../Servicios/Categorias/listar.categorias.js';
 
 
 export default function PaginaAdmiProductos() {
@@ -20,7 +19,6 @@ export default function PaginaAdmiProductos() {
                             <LateralCrearProducto />
                         </div>
                     <ListarProductos />
-                    <ListaDeCategorias />
                 </Box>
             </Box>
         </>

@@ -20,7 +20,6 @@ export function ListarIngredientes2() {
                 const response = await fetch("http://localhost:10404/api/ingredientes/lista");
                 const data = await response.json();
                  dataTodosIngredientes = data;
-                 console.log(dataTodosIngredientes)
             } catch (error) {
                 console.error("Error fetching ingredientes:", error);
             }

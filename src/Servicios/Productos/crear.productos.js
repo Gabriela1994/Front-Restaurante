@@ -17,6 +17,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { ObtenerIngredientes } from '../Ingredientes/listar.ingredientes'
+import {ObtenerCategorias} from '../Categorias/listar.categorias.js'
 
 import PositionedSnackbar from '../../Componentes/Alertas/alert.success'
 
@@ -29,12 +30,6 @@ function IngresarProducto(producto) {
         .then(response => {
             console.log("suceess")
             console.log(response)
-            if(response.status === 200){
-                console.log(response.status)
-                }
-                else{
-                console.log(response.status)
-            }
         })
         .catch(error => {
             console.log("ocurrió un error")
@@ -42,20 +37,15 @@ function IngresarProducto(producto) {
         })
 }
 
-const handleSubmit = (producto, ingredientes) => {
+const handleSubmit = (producto, categoria, ingredientes) => {
 
     let objProducto = {
         nombre_producto: producto.nombre,
-        IdCategoria: 2,
+        IdCategoria: parseInt(categoria),
         precio: parseFloat(producto.precio),
         ingredientes: ingredientes,
         descripcion: producto.descripcion,
     }
-
-    console.log("Aqui esta el producto final")
-    console.log(objProducto)
-    console.log("Aqui esta el producto final")
-
     //Preparar el objeto con los datos a guardar.
     IngresarProducto(objProducto)
 
@@ -76,18 +66,23 @@ export default function LlenarArrayDeIngredientes() {
     }
 
     let listaIngredientes = ObtenerIngredientes();
+    let listaCategorias = ObtenerCategorias();
 
+    const [categoria, setCategoria] = React.useState();
+    
+    const CambiarCategoria = (event) => {
+        const {value} = event.target
+        setCategoria(value)
+}
     const [formValues, setFormValues] = React.useState({
         nombre: '',
-        categoria: '',
         precio: '',
         descripcion: ''
     });
-
     const handleChange = (event) => {
-        const { id, value } = event.target;
+        const { id, value } = event.target
         setFormValues({ ...formValues, [id]: value })
-    }
+        }
 
     return (
         <Box
@@ -111,27 +106,22 @@ export default function LlenarArrayDeIngredientes() {
                     focused
                     required = {true}
                 />
-
-                <FormControl sx={{ m: 1, minWidth: 120 }}>
-                    <InputLabel id="demo-simple-select-helper-label" color="secondary">Categoría</InputLabel>
+                    <InputLabel color="secondary">Categoría</InputLabel>
                     <Select
-                        labelId="demo-simple-select-helper-label"
                         id="categoria"
-                        value={formValues.categoria}
                         label="Categoria"
-                        onChange={handleChange}
+                        onChange={CambiarCategoria}
                         color="secondary"
-                        focused
                         required = {true}
                         >
-                        <MenuItem value="">
+                        <MenuItem value={0}>
                             <em>None</em>
                         </MenuItem>
-                        <MenuItem value={1}>Hamburguesa de carne</MenuItem>
+                        {listaCategorias.map((cat) =>
+                        <MenuItem value={cat.id}>{cat.nombre}</MenuItem>
+                        )}
                     </Select>
                     <FormHelperText>Ingrese la categoria del producto</FormHelperText>
-                </FormControl>
-                
                 <TextField
                     helperText="Ingresa el precio"
                     id="precio"
@@ -168,7 +158,7 @@ export default function LlenarArrayDeIngredientes() {
                     </FormGroup>
                 </FormControl>
                 <Stack direction="row" spacing={2}>
-                    <Button onClick={() => handleSubmit(formValues, ingredientesSeleccionados)} variant="outlined" startIcon={<AddCircleOutlineIcon />}>
+                    <Button onClick={() => handleSubmit(formValues, categoria, ingredientesSeleccionados)} variant="outlined" startIcon={<AddCircleOutlineIcon />}>
                         Crear
                     </Button>
                 </Stack>

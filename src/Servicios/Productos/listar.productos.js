@@ -5,10 +5,12 @@ import IconButton from '@mui/material/IconButton';
 import LateralEditar from '../../Componentes/Laterales/lateral-edit.js'
 import { EliminarIngrediente } from '../../Servicios/Ingredientes/eliminar.ingrediente.js'
 import {ListarIngredientes2} from '../Ingredientes/listar.ingredientes.js'
+import ListaDeCategorias from '../Categorias/listar.categorias.js'
 
 let dataTodosProductos = [];
 
 ListarIngredientes2()
+ListaDeCategorias();
 
 export function IngredientePorProducto(id){
         const fetchData = async () => {
@@ -35,8 +37,6 @@ export const ListarProductos = () => {
                 const response = await fetch("http://localhost:10404/api/productos/lista");
                 const data = await response.json();
                 setData(dataTodosProductos = data);
-                console.log(data)
-
                 data.forEach(p => {
                     IngredientePorProducto(p.id)
                 });

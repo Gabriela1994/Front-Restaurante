@@ -6,7 +6,6 @@ import Button from '@mui/material/Button';
 import '../../Componentes/administracion.css'
 import Stack from '@mui/material/Stack';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import {ListarIngredientes} from '../Ingredientes/listar.ingredientes'
 
 function AgregarIngrediente(ingrediente) {
 
@@ -22,10 +21,11 @@ function AgregarIngrediente(ingrediente) {
         .post(baseURL, objIngrediente)
         .then(response => {
             console.log("suceess")
+            debugger;
             console.log(response)
-
-        })
-        .catch(error => {
+            })
+            .catch(error => {
+            debugger;
             console.log("ocurrió un error")
             console.log(error)
         })
